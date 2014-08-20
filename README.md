@@ -8,10 +8,10 @@ Global Architecture :
 1 - Back-end system :
    
     Mysql server database
-    Weservice 
+    webservice 
 
 2-  Mobile device :
     
-    native Android application  
+    native android application  
     sqlite databsae
 
