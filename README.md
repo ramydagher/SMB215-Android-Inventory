@@ -4,6 +4,9 @@ SMB215-Android-Inventory
 SMB 215 Final Project:
 Inventory Management System, back-end and mobile appllication.
 
+IDE : Android Studio for mobile
+      Netbeans for webservices
+
 Global Architecture :
 
 1 - Back-end system 
