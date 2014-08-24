@@ -1,7 +1,8 @@
 SMB215-Android-Inventory
 ========================
 
-SMB 215 Final Project
+SMB 215 Final Project:
+Inventory Management System, back-end and mobile appllication.
 
 Global Architecture :
 
