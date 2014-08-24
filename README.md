@@ -18,8 +18,8 @@ Global Architecture :
 
 Features :
 
-Products
-Suppliers
-Customers
-Purchase Order
-Sales Order
+Products,
+Suppliers,
+Customers,
+Purchase Order,
+Sales Order.
