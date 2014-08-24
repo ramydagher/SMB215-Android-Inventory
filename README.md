@@ -19,9 +19,9 @@ Global Architecture :
 Features :
 
     
-     Products,
-     Suppliers,
-     Customers,
-     Purchase Orders,
-     Sales Orders.
+     Products
+     Suppliers
+     Customers
+     Purchase Orders
+     Sales Orders
    
