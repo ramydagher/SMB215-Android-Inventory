@@ -24,9 +24,7 @@ public class CustomerView extends Activity {
         Intent intent = getIntent();
         currentCustomer = (Customer) intent.getSerializableExtra("Customer");
 
-        if(intent.hasExtra("Editable")){
-            isEditable = (boolean) intent.getExtras().getBoolean("Editable");
-        }
+
 
         atName= (EditText)findViewById(R.id.txt_customer_name);
         atName.setText(currentCustomer.getName());
@@ -73,12 +71,12 @@ public class CustomerView extends Activity {
 
     }
 
-    private boolean isChangedStat = true;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        selectMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_customer_view, menu);
         return super.onCreateOptionsMenu(menu);
+
     }
 
     @Override
@@ -88,28 +86,11 @@ public class CustomerView extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_edit) {
-            //atName.setInputType(InputType.TYPE_CLASS_TEXT);
-            setViewEditable(true);
-            isChangedStat = !isChangedStat;
+            Intent intent = new Intent(CustomerView.this ,CustomerEdit.class);
+            intent.putExtra("Customer", currentCustomer);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        selectMenu(menu);
-        return super.onPrepareOptionsMenu(menu);
-    }
 
-    private void selectMenu(Menu menu) {
-        menu.clear();
-        MenuInflater inflater = getMenuInflater();
-
-        if (isChangedStat) {
-            inflater.inflate(R.menu.menu_customer_view, menu);
-        }
-        else {
-            inflater.inflate(R.menu.menu_list, menu);
-        }
-        super.onCreateOptionsMenu(menu);
-    }
 }

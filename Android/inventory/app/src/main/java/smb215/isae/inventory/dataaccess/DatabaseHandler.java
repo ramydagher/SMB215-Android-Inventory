@@ -21,7 +21,7 @@ import smb215.isae.inventory.beans.Supplier;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "inventory";
 
     // Tables Structure
@@ -49,7 +49,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String COL_CUSTOMER_NAME = "name";
     private static final String COL_CUSTOMER_COMPANYNAME = "companyname";
     private static final String COL_CUSTOMER_PHONE = "phone";
-    private static final String COL_CUSTOMER_FAX = "fax";
     private static final String COL_CUSTOMER_EMAIL = "email";
     private static final String COL_CUSTOMER_BILLINGADDRESS = "billingAddress";
     private static final String COL_CUSTOMER_SHIPPINGADDRESS = "shippingAddress";
@@ -62,7 +61,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String COL_SUPPLIER_NAME = "name";
     private static final String COL_SUPPLIER_COMPANYNAME = "companyname";
     private static final String COL_SUPPLIER_PHONE = "phone";
-    private static final String COL_SUPPLIER_FAX = "fax";
     private static final String COL_SUPPLIER_EMAIL = "email";
     private static final String COL_SUPPLIER_BILLINGADDRESS = "billingAddress";
 
@@ -94,7 +92,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + COL_CUSTOMER_NAME + " TEXT,"
                 + COL_CUSTOMER_COMPANYNAME + " TEXT,"
                 + COL_CUSTOMER_EMAIL + " TEXT,"
-                + COL_CUSTOMER_FAX + " TEXT,"
                 + COL_CUSTOMER_PHONE + " TEXT,"
                 + COL_CUSTOMER_SHIPPINGADDRESS + " TEXT,"
                 + COL_CUSTOMER_BILLINGADDRESS + " TEXT)";
@@ -105,7 +102,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + COL_SUPPLIER_NAME + " TEXT,"
                 + COL_SUPPLIER_COMPANYNAME + " TEXT,"
                 + COL_SUPPLIER_EMAIL + " TEXT,"
-                + COL_SUPPLIER_FAX + " TEXT,"
                 + COL_SUPPLIER_PHONE + " TEXT,"
                 + COL_SUPPLIER_BILLINGADDRESS + " TEXT)";
         db.execSQL(CREATE_SUPPLIER_TABLE);
@@ -158,7 +154,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(COL_CUSTOMER_NAME, customer.getName());
         values.put(COL_CUSTOMER_COMPANYNAME, customer.getCompanyName());
         values.put(COL_CUSTOMER_EMAIL, customer.getEmail());
-        values.put(COL_CUSTOMER_FAX, customer.getFax());
         values.put(COL_CUSTOMER_PHONE, customer.getPhone());
         values.put(COL_CUSTOMER_BILLINGADDRESS, customer.getBillingAddress());
         values.put(COL_CUSTOMER_SHIPPINGADDRESS, customer.getShippingAddress());
@@ -175,7 +170,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(COL_SUPPLIER_NAME, supplier.getName());
         values.put(COL_SUPPLIER_COMPANYNAME, supplier.getCompanyName());
         values.put(COL_SUPPLIER_EMAIL, supplier.getEmail());
-        values.put(COL_SUPPLIER_FAX, supplier.getFax());
         values.put(COL_SUPPLIER_PHONE, supplier.getPhone());
         values.put(COL_SUPPLIER_BILLINGADDRESS, supplier.getBillingAddress());
 
@@ -218,7 +212,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(COL_CUSTOMER_NAME, customer.getName());
         values.put(COL_CUSTOMER_COMPANYNAME, customer.getCompanyName());
         values.put(COL_CUSTOMER_EMAIL, customer.getEmail());
-        values.put(COL_CUSTOMER_FAX, customer.getFax());
+
         values.put(COL_CUSTOMER_PHONE, customer.getPhone());
         values.put(COL_CUSTOMER_BILLINGADDRESS, customer.getBillingAddress());
         values.put(COL_CUSTOMER_SHIPPINGADDRESS, customer.getShippingAddress());
@@ -235,7 +229,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(COL_SUPPLIER_NAME, supplier.getName());
         values.put(COL_SUPPLIER_COMPANYNAME, supplier.getCompanyName());
         values.put(COL_SUPPLIER_EMAIL, supplier.getEmail());
-        values.put(COL_SUPPLIER_FAX, supplier.getFax());
         values.put(COL_SUPPLIER_PHONE, supplier.getPhone());
         values.put(COL_SUPPLIER_BILLINGADDRESS, supplier.getBillingAddress());
 
@@ -333,9 +326,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             p.setName(res.getString(1));
             p.setCompanyName(res.getString(2));
             p.setPhone(res.getString(3));
-            p.setFax(res.getString(4));
-            p.setEmail(res.getString(5));
-            p.setBillingAddress(res.getString(6));
+            p.setEmail(res.getString(4));
+            p.setBillingAddress(res.getString(5));
             p.setShippingAddress(res.getString(6));
             list.add(p);
             res.moveToNext();
@@ -356,14 +348,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             p.setName(res.getString(1));
             p.setCompanyName(res.getString(2));
             p.setPhone(res.getString(3));
-            p.setFax(res.getString(4));
-            p.setEmail(res.getString(5));
-            p.setBillingAddress(res.getString(6));
+            p.setEmail(res.getString(4));
+            p.setBillingAddress(res.getString(5));
 
             list.add(p);
             res.moveToNext();
         }
         return list;
+    }
+
+    public boolean checkCustomerExists(String customerName)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_CUSTOMER +" WHERE " + COL_CUSTOMER_NAME+" = " +customerName, null);
+        if ( res.getCount() > 0)
+            return false;
+        else
+            return true;
+
     }
 
 

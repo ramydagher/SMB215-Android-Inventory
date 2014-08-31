@@ -9,7 +9,6 @@ public class Supplier {
     private String Name;
     private String CompanyName;
     private String Phone;
-    private String Fax;
     private String Email;
     private String BillingAddress;
 
@@ -22,7 +21,6 @@ public class Supplier {
         Name = name;
         CompanyName = companyName;
         Phone = phone;
-        Fax = fax;
         Email = email;
         BillingAddress = billingAddress;
     }
@@ -57,14 +55,6 @@ public class Supplier {
 
     public void setPhone(String phone) {
         Phone = phone;
-    }
-
-    public String getFax() {
-        return Fax;
-    }
-
-    public void setFax(String fax) {
-        Fax = fax;
     }
 
     public String getEmail() {

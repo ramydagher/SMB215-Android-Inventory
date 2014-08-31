@@ -11,7 +11,6 @@ public class Customer implements Serializable {
     private String Name;
     private String CompanyName;
     private String Phone;
-    private String Fax;
     private String Email;
     private String BillingAddress;
     private String ShippingAddress;
@@ -24,7 +23,6 @@ public class Customer implements Serializable {
         Name = name;
         CompanyName = companyName;
         Phone = phone;
-        Fax = fax;
         Email = email;
         BillingAddress = billingAddress;
         ShippingAddress = shippingAddress;
@@ -62,14 +60,6 @@ public class Customer implements Serializable {
         Phone = phone;
     }
 
-    public String getFax() {
-        return Fax;
-    }
-
-    public void setFax(String fax) {
-        Fax = fax;
-    }
-
     public String getEmail() {
         return Email;
     }
@@ -101,7 +91,6 @@ public class Customer implements Serializable {
                 ", Name='" + Name + '\'' +
                 ", CompanyName='" + CompanyName + '\'' +
                 ", Phone='" + Phone + '\'' +
-                ", Fax='" + Fax + '\'' +
                 ", Email='" + Email + '\'' +
                 ", BillingAddress='" + BillingAddress + '\'' +
                 ", ShippingAddress='" + ShippingAddress + '\'' +

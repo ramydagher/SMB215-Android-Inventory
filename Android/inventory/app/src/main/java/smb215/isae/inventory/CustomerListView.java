@@ -14,44 +14,51 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import smb215.isae.inventory.beans.Customer;
 import smb215.isae.inventory.dataaccess.DatabaseHandler;
 
 
-public class CustomerActivity extends Activity {
+public class CustomerListView extends Activity {
 
     private List<Customer> Customers = new ArrayList<Customer>();
     private Customer CurrentCustomer;
     DatabaseHandler db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_list);
         db = new DatabaseHandler(getApplicationContext());
 
-        populateCustomers();
-        populateListView();
+
         registerClick();
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        populateCustomers();
+        populateListView();
+    }
 
     private void registerClick() {
-        ListView list = (ListView)findViewById(R.id.mainListView);
+        ListView list = (ListView) findViewById(R.id.mainListView);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View viewClick, int pos, long id) {
                 Customer clickedCustomer = Customers.get(pos);
                 //String message = "you clicked position " + pos+" which is the customer "+ clickedCustomer.getName();
                 //Toast.makeText(CustomerActivity.this,message, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(CustomerActivity.this ,CustomerView.class);
+                Intent intent = new Intent(CustomerListView.this, CustomerView.class);
                 intent.putExtra("Customer", clickedCustomer);
                 startActivity(intent);
             }
         });
     }
+
 
     private void populateListView() {
         ArrayAdapter<Customer> adapter = new MyListAdapter();
@@ -62,33 +69,42 @@ public class CustomerActivity extends Activity {
     public class MyListAdapter extends ArrayAdapter<Customer> {
 
         public MyListAdapter() {
-            super(CustomerActivity.this, R.layout.list_item_view, Customers);
+            super(CustomerListView.this, R.layout.list_item_view, Customers);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View ItemView = convertView;
-            if ( ItemView == null)
+            if (ItemView == null)
                 ItemView = getLayoutInflater().inflate(R.layout.list_item_view, parent, false);
 
             CurrentCustomer = Customers.get(position);
 
-            ImageView imageview = (ImageView)ItemView.findViewById(R.id.itemIcon);
+            ImageView imageview = (ImageView) ItemView.findViewById(R.id.itemIcon);
             imageview.setImageResource(R.drawable.customer);
 
-            TextView nameText =  (TextView)ItemView.findViewById(R.id.CustomerName);
+            TextView nameText = (TextView) ItemView.findViewById(R.id.CustomerName);
             nameText.setText(CurrentCustomer.getName());
 
 
-            TextView telText =  (TextView)ItemView.findViewById(R.id.CustomerTel);
+            TextView telText = (TextView) ItemView.findViewById(R.id.CustomerTel);
             telText.setText(CurrentCustomer.getCompanyName());
 
             return ItemView;
 
         }
     }
+
     private void populateCustomers() {
-       Customers  = db.getCustomers();
+        //        Customer cust = new Customer();
+        //        cust.setName("Customer " + Calendar.getInstance().getTimeInMillis());
+        //        cust.setEmail("Customer@gmail.com");
+        //        cust.setCompanyName("Active Identity");
+        //        cust.setPhone("03729905");
+        //        cust.setShippingAddress("Zouk Mikael , Al Boustan Street , Kazzi Building");
+        //        cust.setBillingAddress("Berytech Mar roukoz");
+        //        db.addCustomer(cust);
+        Customers = db.getCustomers();
     }
 
 
@@ -107,7 +123,10 @@ public class CustomerActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_add) {
-            return true;
+            Intent intent = new Intent(this, CustomerEdit.class);
+            Customer newCustomer = new Customer();
+            intent.putExtra("Customer", newCustomer);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

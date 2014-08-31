@@ -21,7 +21,7 @@ public class main extends Activity {
         {
             public void onClick(View v)
             {
-                Intent intent = new Intent(main.this, CustomerActivity.class);
+                Intent intent = new Intent(main.this, CustomerListView.class);
                 startActivity(intent);
             }
         });
