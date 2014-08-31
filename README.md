@@ -7,8 +7,6 @@ Inventory Management System, back-end and mobile appllication.
 IDE : Android Studio for mobile , 
       Netbeans for webservices
 
-Direct link: https://github.com/ramydagher/SMB215-Android-Inventory/tree/master/Android/inventory/app/src/main/java/smb215/isae/inventory
-
 
 Global Architecture :
 
