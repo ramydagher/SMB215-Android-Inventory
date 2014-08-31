@@ -1,0 +1,186 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="left"
+    android:orientation="vertical"
+    tools:context="smb215.isae.inventory.CustomerView">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imCustomer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="#000000"
+                    android:padding="10dp"
+                    android:src="@drawable/customer" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="49dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_customer_Name"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:text="Name" />
+
+                <EditText
+                    android:id="@+id/txt_customer_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/txt_customer_phone"
+                    android:layout_centerHorizontal="true"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_customer_Email"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:text="Email" />
+
+                <EditText
+                    android:id="@+id/txt_customer_email"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:layout_above="@+id/txt_customer_phone"
+                    android:layout_alignLeft="@+id/txt_customer_name"
+                    android:layout_alignStart="@+id/txt_customer_name"
+                    android:editable="false"
+                    android:ems="10"
+                    android:inputType="textWebEmailAddress" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_customer_Phone"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:text="Phone" />
+
+                <EditText
+                    android:id="@+id/txt_customer_phone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:layout_alignLeft="@+id/txt_customer_email"
+                    android:layout_alignStart="@+id/txt_customer_email"
+                    android:layout_centerVertical="true"
+                    android:editable="false"
+                    android:ems="10"
+                    android:inputType="phone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_customer_Company"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:text="Company" />
+
+                <EditText
+                    android:id="@+id/txt_customer_company"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/txt_customer_phone"
+                    android:layout_centerHorizontal="true"
+                    android:editable="false"
+                    android:ems="10"
+                    android:enabled="true"
+                    android:inputType="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_customer_bAddress"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="Billing Address"
+                    android:textAlignment="textStart" />
+
+                <EditText
+                    android:id="@+id/txt_billing_address"
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/txxt_customer_company"
+                    android:editable="false"
+                    android:ems="10"
+                    android:enabled="true"
+                    android:inputType="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_customer_sAddress"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="left"
+                    android:text="Shipping Address" />
+
+                <EditText
+                    android:id="@+id/txt_shipping_address"
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/txt_billing_address"
+                    android:editable="false"
+                    android:ems="10"
+                    android:inputType="text" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

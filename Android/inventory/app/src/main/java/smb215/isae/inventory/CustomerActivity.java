@@ -1,6 +1,7 @@
 package smb215.isae.inventory;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,20 +12,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import smb215.isae.inventory.beans.Customer;
+import smb215.isae.inventory.dataaccess.DatabaseHandler;
 
 
 public class CustomerActivity extends Activity {
 
     private List<Customer> Customers = new ArrayList<Customer>();
     private Customer CurrentCustomer;
+    DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.customer_activity);
+        setContentView(R.layout.activity_customer_list);
+        db = new DatabaseHandler(getApplicationContext());
+
         populateCustomers();
         populateListView();
         registerClick();
@@ -38,8 +44,11 @@ public class CustomerActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View viewClick, int pos, long id) {
                 Customer clickedCustomer = Customers.get(pos);
-                String message = "you clicked position " + pos+" which is the customer "+ clickedCustomer.getName();
-                Toast.makeText(CustomerActivity.this,message, Toast.LENGTH_LONG).show();
+                //String message = "you clicked position " + pos+" which is the customer "+ clickedCustomer.getName();
+                //Toast.makeText(CustomerActivity.this,message, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(CustomerActivity.this ,CustomerView.class);
+                intent.putExtra("Customer", clickedCustomer);
+                startActivity(intent);
             }
         });
     }
@@ -52,48 +61,43 @@ public class CustomerActivity extends Activity {
 
     public class MyListAdapter extends ArrayAdapter<Customer> {
 
-
         public MyListAdapter() {
-            super(CustomerActivity.this, R.layout.item_view,Customers);
-
+            super(CustomerActivity.this, R.layout.list_item_view, Customers);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View ItemView = convertView;
             if ( ItemView == null)
-            {
-                ItemView = getLayoutInflater().inflate(R.layout.item_view, parent, false);
-
-            }
+                ItemView = getLayoutInflater().inflate(R.layout.list_item_view, parent, false);
 
             CurrentCustomer = Customers.get(position);
 
             ImageView imageview = (ImageView)ItemView.findViewById(R.id.itemIcon);
-            imageview.setImageResource(R.drawable.ic_launcher);
+            imageview.setImageResource(R.drawable.customer);
 
             TextView nameText =  (TextView)ItemView.findViewById(R.id.CustomerName);
             nameText.setText(CurrentCustomer.getName());
 
 
             TextView telText =  (TextView)ItemView.findViewById(R.id.CustomerTel);
-            telText.setText(CurrentCustomer.getTelNumber());
+            telText.setText(CurrentCustomer.getCompanyName());
 
             return ItemView;
 
         }
     }
     private void populateCustomers() {
-        Customers.add(new Customer(0,"john","a","b"));
-        Customers.add(new Customer(0,"ramy","ccccc","dsasad"));
+       Customers  = db.getCustomers();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.menu_list, menu);
+        return super.onCreateOptionsMenu(menu);
+
     }
 
     @Override
@@ -102,7 +106,7 @@ public class CustomerActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add) {
             return true;
         }
         return super.onOptionsItemSelected(item);
