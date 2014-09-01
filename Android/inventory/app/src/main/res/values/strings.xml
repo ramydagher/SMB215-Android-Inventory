@@ -7,10 +7,12 @@
     <string name="action_edit">Edit</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
     <string name="title_activity_customer_view">Customers</string>
     <string name="title_activity_main">Inventory Management</string>
-    <string name="title_activity_customer_details">Customer Details</string>
-    <string name="title_activity_customer_edit">CustomerEdit</string>
+    <string name="title_activity_customer_details">Customer - Details</string>
+    <string name="title_activity_customer_edit">Customer - Edit</string>
+    <string name="title_activity_customer_add">Customer - Add</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>

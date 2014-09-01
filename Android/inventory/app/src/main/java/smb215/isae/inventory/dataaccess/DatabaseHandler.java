@@ -360,8 +360,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public boolean checkCustomerExists(String customerName)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_CUSTOMER +" WHERE " + COL_CUSTOMER_NAME+" = " +customerName, null);
-        if ( res.getCount() > 0)
+        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_CUSTOMER +" WHERE " + COL_CUSTOMER_NAME+" = '" +customerName+"'", null);
+        if ( res.getCount() == 0)
             return false;
         else
             return true;

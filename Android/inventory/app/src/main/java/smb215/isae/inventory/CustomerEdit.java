@@ -17,6 +17,7 @@ public class CustomerEdit extends Activity {
     Customer currentCustomer;
     EditText atName, atCompanyName, atPhone, atEmail, atBillingAddress, atShippingAddress;
     DatabaseHandler db;
+    boolean isEdit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,14 @@ public class CustomerEdit extends Activity {
 
         Intent intent = getIntent();
         currentCustomer = (Customer) intent.getSerializableExtra("Customer");
+
+        if (currentCustomer.getID() > 0)
+            isEdit = true;
+
+        if (isEdit)
+            setTitle(R.string.title_activity_customer_edit);
+        else
+            setTitle(R.string.title_activity_customer_add);
 
         atName = (EditText) findViewById(R.id.txt_customer_name);
         atName.setText(currentCustomer.getName());
@@ -47,9 +56,7 @@ public class CustomerEdit extends Activity {
         atShippingAddress.setText(currentCustomer.getShippingAddress());
     }
 
-    private void DisplayToast(String message) {
-        Toast.makeText(CustomerEdit.this, message, Toast.LENGTH_LONG).show();
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,7 +79,7 @@ public class CustomerEdit extends Activity {
             if (atName.getText().toString().trim().equals("")) {
                 String message = "Customer name is required!";
                 atName.setError(message);
-                DisplayToast(message);
+                Utils.DisplayToast(this,message);
                 return false;
             }
 
@@ -83,20 +90,25 @@ public class CustomerEdit extends Activity {
             currentCustomer.setBillingAddress(atBillingAddress.getText().toString());
             currentCustomer.setShippingAddress(atShippingAddress.getText().toString());
 
-            if (db.checkCustomerExists(currentCustomer.getName()))
-            {
-                String message ="Customer name already exist!";
-                atName.setError(message);
-                DisplayToast(message);
-                return false;
-            }
 
-            if (currentCustomer.getID() > 0) {
+
+            if (isEdit) {
                 db.updateCustomer(currentCustomer);
-                DisplayToast("Customer '" + currentCustomer.getName() + "' updated successfully!");
+                String message ="Customer '" + currentCustomer.getName() + "' updated successfully!";
+                Utils.DisplayToast(this,message);
             } else {
+
+                if (db.checkCustomerExists(currentCustomer.getName()))
+                {
+                    String message ="Customer name already exist!";
+                    atName.setError(message);
+                    Utils.DisplayToast(this,message);
+                    return false;
+                }
+
                 db.addCustomer(currentCustomer);
-                DisplayToast("Customer '" + currentCustomer.getName() + "' added successfully!");
+                String message ="Customer '" + currentCustomer.getName() + "' added successfully!";
+                Utils.DisplayToast(this,message);
             }
             this.finish();
         }
