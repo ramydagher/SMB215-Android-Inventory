@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="smb215.isae.inventory.CustomerEdit" >
+    tools:context="smb215.isae.inventory.customerEdit" >
     <item android:id="@+id/action_cancel"
         android:title="@string/action_cancel"
         android:showAsAction="always" />

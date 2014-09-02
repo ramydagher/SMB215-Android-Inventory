@@ -16,14 +16,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import smb215.isae.inventory.beans.customer;
+import smb215.isae.inventory.beans.supplier;
 import smb215.isae.inventory.dataaccess.databaseHandler;
 
 
-public class customerListView extends Activity {
+public class supplierListView extends Activity {
 
-    private List<customer> customers = new ArrayList<customer>();
-    private customer currentCustomer;
+    private List<supplier> suppliers = new ArrayList<supplier>();
+    private supplier currentSupplier;
     databaseHandler db;
 
     @Override
@@ -39,7 +39,7 @@ public class customerListView extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        populateCustomers();
+        populateSuppliers();
         populateListView();
     }
 
@@ -48,11 +48,9 @@ public class customerListView extends Activity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View viewClick, int pos, long id) {
-                customer clickedCustomer = customers.get(pos);
-                //String message = "you clicked position " + pos+" which is the customer "+ clickedCustomer.getName();
-                //Toast.makeText(CustomerActivity.this,message, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(customerListView.this, customerView.class);
-                intent.putExtra("Customer", clickedCustomer);
+                supplier clickedSupplier = suppliers.get(pos);
+                Intent intent = new Intent(supplierListView.this, supplierView.class);
+                intent.putExtra("Supplier", clickedSupplier);
                 startActivity(intent);
             }
         });
@@ -60,15 +58,15 @@ public class customerListView extends Activity {
 
 
     private void populateListView() {
-        ArrayAdapter<customer> adapter = new MyListAdapter();
+        ArrayAdapter<supplier> adapter = new MyListAdapter();
         ListView list = (ListView) findViewById(R.id.mainListView);
         list.setAdapter(adapter);
     }
 
-    public class MyListAdapter extends ArrayAdapter<customer> {
+    public class MyListAdapter extends ArrayAdapter<supplier> {
 
         public MyListAdapter() {
-            super(customerListView.this, R.layout.list_item_view, customers);
+            super(supplierListView.this, R.layout.list_item_view, suppliers);
         }
 
         @Override
@@ -77,33 +75,33 @@ public class customerListView extends Activity {
             if (ItemView == null)
                 ItemView = getLayoutInflater().inflate(R.layout.list_item_view, parent, false);
 
-            currentCustomer = customers.get(position);
+            currentSupplier = suppliers.get(position);
 
             ImageView imageview = (ImageView) ItemView.findViewById(R.id.itemIcon);
-            imageview.setImageResource(R.drawable.customer);
+            imageview.setImageResource(R.drawable.supplier);
 
             TextView nameText = (TextView) ItemView.findViewById(R.id.BigHeader);
-            nameText.setText(currentCustomer.getName());
+            nameText.setText(currentSupplier.getName());
 
 
             TextView compText = (TextView) ItemView.findViewById(R.id.SmallHeader);
-            compText.setText(currentCustomer.getCompanyName());
+            compText.setText(currentSupplier.getCompanyName());
 
             return ItemView;
 
         }
     }
 
-    private void populateCustomers() {
-        //        Customer cust = new Customer();
-        //        cust.setName("Customer " + Calendar.getInstance().getTimeInMillis());
-        //        cust.setEmail("Customer@gmail.com");
+    private void populateSuppliers() {
+        //        Supplier cust = new Supplier();
+        //        cust.setName("Supplier " + Calendar.getInstance().getTimeInMillis());
+        //        cust.setEmail("Supplier@gmail.com");
         //        cust.setCompanyName("Active Identity");
         //        cust.setPhone("03729905");
         //        cust.setShippingAddress("Zouk Mikael , Al Boustan Street , Kazzi Building");
         //        cust.setBillingAddress("Berytech Mar roukoz");
-        //        db.addCustomer(cust);
-        customers = db.getCustomers();
+        //        db.addSupplier(cust);
+        suppliers = db.getSuppliers();
     }
 
 
@@ -122,9 +120,9 @@ public class customerListView extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_add) {
-            Intent intent = new Intent(this, customerEdit.class);
-            customer newCustomer = new customer();
-            intent.putExtra("Customer", newCustomer);
+            Intent intent = new Intent(this, supplierEdit.class);
+            supplier newSupplier = new supplier();
+            intent.putExtra("Supplier", newSupplier);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

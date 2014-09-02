@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="left"
     android:orientation="vertical"
-    tools:context="smb215.isae.inventory.customerView">
+    tools:context="smb215.isae.inventory.supplierView">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -22,14 +22,14 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imCustomer"
+                    android:id="@+id/imSupplier"
                     android:layout_width="fill_parent"
                     android:layout_height="100dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:background="#000000"
                     android:padding="10dp"
-                    android:src="@drawable/customer" />
+                    android:src="@drawable/supplier" />
             </LinearLayout>
 
             <LinearLayout
@@ -38,7 +38,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_customer_Name"
+                    android:id="@+id/tv_supplier_Name"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -46,10 +46,10 @@
                     android:text="Name" />
 
                 <EditText
-                    android:id="@+id/txt_customer_name"
+                    android:id="@+id/txt_supplier_name"
                     android:layout_width="fill_parent"
                     android:layout_height="50dp"
-                    android:layout_below="@+id/txt_customer_phone"
+                    android:layout_below="@+id/txt_supplier_phone"
                     android:layout_centerHorizontal="true"
                     android:ems="10"
                     android:inputType="textPersonName" />
@@ -62,7 +62,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_customer_Email"
+                    android:id="@+id/tv_supplier_Email"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -70,12 +70,12 @@
                     android:text="Email" />
 
                 <EditText
-                    android:id="@+id/txt_customer_email"
+                    android:id="@+id/txt_supplier_email"
                     android:layout_width="fill_parent"
                     android:layout_height="50dp"
-                    android:layout_above="@+id/txt_customer_phone"
-                    android:layout_alignLeft="@+id/txt_customer_name"
-                    android:layout_alignStart="@+id/txt_customer_name"
+                    android:layout_above="@+id/txt_supplier_phone"
+                    android:layout_alignLeft="@+id/txt_supplier_name"
+                    android:layout_alignStart="@+id/txt_supplier_name"
                     android:editable="false"
                     android:ems="10"
                     android:inputType="textWebEmailAddress" />
@@ -87,7 +87,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_customer_Phone"
+                    android:id="@+id/tv_supplier_Phone"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -95,11 +95,11 @@
                     android:text="Phone" />
 
                 <EditText
-                    android:id="@+id/txt_customer_phone"
+                    android:id="@+id/txt_supplier_phone"
                     android:layout_width="fill_parent"
                     android:layout_height="50dp"
-                    android:layout_alignLeft="@+id/txt_customer_email"
-                    android:layout_alignStart="@+id/txt_customer_email"
+                    android:layout_alignLeft="@+id/txt_supplier_email"
+                    android:layout_alignStart="@+id/txt_supplier_email"
                     android:layout_centerVertical="true"
                     android:editable="false"
                     android:ems="10"
@@ -112,7 +112,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_customer_Company"
+                    android:id="@+id/tv_supplier_Company"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -120,10 +120,10 @@
                     android:text="Company" />
 
                 <EditText
-                    android:id="@+id/txt_customer_company"
+                    android:id="@+id/txt_supplier_company"
                     android:layout_width="fill_parent"
                     android:layout_height="50dp"
-                    android:layout_below="@+id/txt_customer_phone"
+                    android:layout_below="@+id/txt_supplier_phone"
                     android:layout_centerHorizontal="true"
                     android:editable="false"
                     android:ems="10"
@@ -137,12 +137,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_customer_bAddress"
+                    android:id="@+id/tv_supplier_bAddress"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center_horizontal"
-                    android:text="Billing Address" />
+                    android:text="Billing    Address" />
 
                 <EditText
                     android:id="@+id/txt_billing_address"
@@ -150,7 +150,7 @@
                     android:layout_height="50dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/txt_customer_company"
+                    android:layout_below="@+id/txt_supplier_company"
                     android:editable="false"
                     android:ems="10"
                     android:enabled="true"
@@ -162,24 +162,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_customer_sAddress"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center_horizontal"
-                    android:text="Shipping Address" />
-
-                <EditText
-                    android:id="@+id/txt_shipping_address"
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/txt_billing_address"
-                    android:editable="false"
-                    android:ems="10"
-                    android:inputType="text" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

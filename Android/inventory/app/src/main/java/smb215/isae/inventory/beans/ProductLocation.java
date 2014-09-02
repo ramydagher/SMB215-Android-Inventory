@@ -1,17 +1,19 @@
 package smb215.isae.inventory.beans;
 
+import java.io.Serializable;
+
 /**
  * Created by Ramy on 8/31/2014.
  */
-public class ProductLocation {
+public class productLocation implements Serializable {
 
     private int ID;
     private String Name;
 
-    public ProductLocation() {
+    public productLocation() {
     }
 
-    public ProductLocation(int ID, String name) {
+    public productLocation(int ID, String name) {
         this.ID = ID;
         Name = name;
     }
@@ -32,4 +34,11 @@ public class ProductLocation {
         Name = name;
     }
 
+    @Override
+    public String toString() {
+        return "productLocation{" +
+                "ID=" + ID +
+                ", Name='" + Name + '\'' +
+                '}';
+    }
 }

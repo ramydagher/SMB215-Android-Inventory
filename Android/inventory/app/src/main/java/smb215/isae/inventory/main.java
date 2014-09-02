@@ -21,7 +21,17 @@ public class main extends Activity {
         {
             public void onClick(View v)
             {
-                Intent intent = new Intent(main.this, CustomerListView.class);
+                Intent intent = new Intent(main.this, customerListView.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnSupplier = (Button) findViewById(R.id.btnSuppliers);
+        btnSupplier.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(main.this, supplierListView.class);
                 startActivity(intent);
             }
         });

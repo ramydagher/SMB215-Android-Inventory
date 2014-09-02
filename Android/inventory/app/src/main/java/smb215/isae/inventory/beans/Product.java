@@ -1,9 +1,11 @@
 package smb215.isae.inventory.beans;
 
+import java.io.Serializable;
+
 /**
  * Created by Ramy on 8/31/2014.
  */
-public class Product {
+public class product implements Serializable{
 
     private int ID;
     private String Barcode;
@@ -13,11 +15,11 @@ public class Product {
     private int Price;
     private int LocationID;
 
-    public Product() {
+    public product() {
 
     }
 
-    public Product(String barcode, String code, String description, int locationID, int quantity, int price) {
+    public product(String barcode, String code, String description, int locationID, int quantity, int price) {
         Barcode = barcode;
         Code = code;
         Description = description;
@@ -82,4 +84,16 @@ public class Product {
         Price = price;
     }
 
+    @Override
+    public String toString() {
+        return "product{" +
+                "ID=" + ID +
+                ", Barcode='" + Barcode + '\'' +
+                ", Code='" + Code + '\'' +
+                ", Description='" + Description + '\'' +
+                ", Quantity=" + Quantity +
+                ", Price=" + Price +
+                ", LocationID=" + LocationID +
+                '}';
+    }
 }

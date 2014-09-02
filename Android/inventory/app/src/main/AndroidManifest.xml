@@ -7,10 +7,7 @@
         android:icon="@drawable/inventory"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".CustomerListView"
-            android:label="@string/title_activity_customer_view" >
-        </activity>
+
         <activity
             android:name=".main"
             android:icon="@drawable/customers"
@@ -22,12 +19,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CustomerView"
+            android:name=".customerListView"
+            android:label="@string/title_activity_customer_view" >
+        </activity>
+        <activity
+            android:name=".customerView"
             android:label="@string/title_activity_customer_details" >
         </activity>
         <activity
-            android:name=".CustomerEdit"
+            android:name=".customerEdit"
             android:label="@string/title_activity_customer_edit" >
+        </activity>
+        <activity
+            android:name=".supplierListView"
+            android:label="@string/title_activity_supplier_view" >
+        </activity>
+        <activity
+            android:name=".supplierView"
+            android:label="@string/title_activity_supplier_details" >
+        </activity>
+        <activity
+            android:name=".supplierEdit"
+            android:label="@string/title_activity_supplier_edit" >
         </activity>
     </application>
 

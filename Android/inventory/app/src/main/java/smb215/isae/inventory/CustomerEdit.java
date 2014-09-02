@@ -6,17 +6,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import smb215.isae.inventory.beans.Customer;
-import smb215.isae.inventory.dataaccess.DatabaseHandler;
+import smb215.isae.inventory.beans.customer;
+import smb215.isae.inventory.dataaccess.databaseHandler;
 
 
-public class CustomerEdit extends Activity {
+public class customerEdit extends Activity {
 
-    Customer currentCustomer;
+    customer currentCustomer;
     EditText atName, atCompanyName, atPhone, atEmail, atBillingAddress, atShippingAddress;
-    DatabaseHandler db;
+    databaseHandler db;
     boolean isEdit = false;
 
     @Override
@@ -24,10 +23,10 @@ public class CustomerEdit extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_edit);
 
-        db = new DatabaseHandler(this);
+        db = new databaseHandler(this);
 
         Intent intent = getIntent();
-        currentCustomer = (Customer) intent.getSerializableExtra("Customer");
+        currentCustomer = (customer) intent.getSerializableExtra("Customer");
 
         if (currentCustomer.getID() > 0)
             isEdit = true;
@@ -61,7 +60,7 @@ public class CustomerEdit extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_customer_edit, menu);
+        getMenuInflater().inflate(R.menu.menu_item_edit, menu);
         return true;
     }
 
@@ -79,7 +78,7 @@ public class CustomerEdit extends Activity {
             if (atName.getText().toString().trim().equals("")) {
                 String message = "Customer name is required!";
                 atName.setError(message);
-                Utils.DisplayToast(this,message);
+                utils.DisplayToast(this, message);
                 return false;
             }
 
@@ -95,20 +94,20 @@ public class CustomerEdit extends Activity {
             if (isEdit) {
                 db.updateCustomer(currentCustomer);
                 String message ="Customer '" + currentCustomer.getName() + "' updated successfully!";
-                Utils.DisplayToast(this,message);
+                utils.DisplayToast(this, message);
             } else {
 
                 if (db.checkCustomerExists(currentCustomer.getName()))
                 {
                     String message ="Customer name already exist!";
                     atName.setError(message);
-                    Utils.DisplayToast(this,message);
+                    utils.DisplayToast(this, message);
                     return false;
                 }
 
                 db.addCustomer(currentCustomer);
                 String message ="Customer '" + currentCustomer.getName() + "' added successfully!";
-                Utils.DisplayToast(this,message);
+                utils.DisplayToast(this, message);
             }
             this.finish();
         }

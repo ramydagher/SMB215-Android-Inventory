@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="left"
     android:orientation="vertical"
-    tools:context="smb215.isae.inventory.CustomerView">
+    tools:context="smb215.isae.inventory.customerView">
 
     <ScrollView
         android:id="@+id/scrollView"

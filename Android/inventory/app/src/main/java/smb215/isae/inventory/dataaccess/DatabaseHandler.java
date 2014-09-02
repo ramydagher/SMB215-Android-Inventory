@@ -13,12 +13,12 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
-import smb215.isae.inventory.beans.Customer;
-import smb215.isae.inventory.beans.Product;
-import smb215.isae.inventory.beans.ProductLocation;
-import smb215.isae.inventory.beans.Supplier;
+import smb215.isae.inventory.beans.customer;
+import smb215.isae.inventory.beans.product;
+import smb215.isae.inventory.beans.productLocation;
+import smb215.isae.inventory.beans.supplier;
 
-public class DatabaseHandler extends SQLiteOpenHelper {
+public class databaseHandler extends SQLiteOpenHelper {
 
 
     private static final int DATABASE_VERSION = 2;
@@ -65,7 +65,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String COL_SUPPLIER_BILLINGADDRESS = "billingAddress";
 
 
-    public DatabaseHandler(Context context) {
+    public databaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -119,7 +119,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(product product) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -135,7 +135,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addProductLocation(ProductLocation productLocation) {
+    public void addProductLocation(productLocation productLocation) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -146,7 +146,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addCustomer(Customer customer) {
+    public void addCustomer(customer customer) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -162,7 +162,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addSupplier(Supplier supplier) {
+    public void addSupplier(supplier supplier) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -177,7 +177,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     
-    public void updateProduct(Product product) {
+    public void updateProduct(product product) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -193,7 +193,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateProductLocation(ProductLocation productLocation) {
+    public void updateProductLocation(productLocation productLocation) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -204,7 +204,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateCustomer(Customer customer) {
+    public void updateCustomer(customer customer) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -221,7 +221,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateSupplier(Supplier supplier) {
+    public void updateSupplier(supplier supplier) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -274,15 +274,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return true;
     }
 
-    public List<Product> getProducts() {
+    public List<product> getProducts() {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        List<Product> list = new ArrayList<Product>();
+        List<product> list = new ArrayList<product>();
 
         Cursor res = db.rawQuery("SELECT * FROM " + TABLE_PRODUCT, null);
         res.moveToFirst();
         while (res.isAfterLast() == false) {
-            Product p = new Product();
+            product p = new product();
             p.setID(res.getInt(0));
             p.setBarcode(res.getString(1));
             p.setCode(res.getString(2));
@@ -296,15 +296,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
-    public List<ProductLocation> getProductLocations() {
+    public List<productLocation> getProductLocations() {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        List<ProductLocation> list = new ArrayList<ProductLocation>();
+        List<productLocation> list = new ArrayList<productLocation>();
 
         Cursor res = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTLOCATION, null);
         res.moveToFirst();
         while (res.isAfterLast() == false) {
-            ProductLocation p = new ProductLocation();
+            productLocation p = new productLocation();
             p.setID(res.getInt(0));
             p.setName(res.getString(1));
             list.add(p);
@@ -313,15 +313,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
-    public List<Customer> getCustomers() {
+    public List<customer> getCustomers() {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        List<Customer> list = new ArrayList<Customer>();
+        List<customer> list = new ArrayList<customer>();
 
         Cursor res = db.rawQuery("SELECT * FROM " + TABLE_CUSTOMER, null);
         res.moveToFirst();
         while (res.isAfterLast() == false) {
-            Customer p = new Customer();
+            customer p = new customer();
             p.setID(res.getInt(0));
             p.setName(res.getString(1));
             p.setCompanyName(res.getString(2));
@@ -335,15 +335,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
-    public List<Supplier> getSuppliers() {
+    public List<supplier> getSuppliers() {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        List<Supplier> list = new ArrayList<Supplier>();
+        List<supplier> list = new ArrayList<supplier>();
 
         Cursor res = db.rawQuery("SELECT * FROM " + TABLE_SUPPLIER, null);
         res.moveToFirst();
         while (res.isAfterLast() == false) {
-            Supplier p = new Supplier();
+            supplier p = new supplier();
             p.setID(res.getInt(0));
             p.setName(res.getString(1));
             p.setCompanyName(res.getString(2));
@@ -361,6 +361,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM " + TABLE_CUSTOMER +" WHERE " + COL_CUSTOMER_NAME+" = '" +customerName+"'", null);
+        if ( res.getCount() == 0)
+            return false;
+        else
+            return true;
+
+    }
+
+    public boolean checkSupplierExists(String supplierName)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_SUPPLIER +" WHERE " + COL_SUPPLIER_NAME+" = '" +supplierName+"'", null);
         if ( res.getCount() == 0)
             return false;
         else

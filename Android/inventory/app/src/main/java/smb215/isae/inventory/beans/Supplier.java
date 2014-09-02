@@ -1,9 +1,11 @@
 package smb215.isae.inventory.beans;
 
+import java.io.Serializable;
+
 /**
  * Created by Ramy on 8/25/2014.
  */
-public class Supplier {
+public class supplier implements Serializable {
 
     private int ID;
     private String Name;
@@ -13,10 +15,10 @@ public class Supplier {
     private String BillingAddress;
 
 
-    public Supplier() {
+    public supplier() {
     }
 
-    public Supplier( String name, String companyName, String phone, String fax, String email, String billingAddress) {
+    public supplier(String name, String companyName, String phone, String fax, String email, String billingAddress) {
 
         Name = name;
         CompanyName = companyName;
@@ -73,4 +75,15 @@ public class Supplier {
         BillingAddress = billingAddress;
     }
 
+    @Override
+    public String toString() {
+        return "supplier{" +
+                "ID=" + ID +
+                ", Name='" + Name + '\'' +
+                ", CompanyName='" + CompanyName + '\'' +
+                ", Phone='" + Phone + '\'' +
+                ", Email='" + Email + '\'' +
+                ", BillingAddress='" + BillingAddress + '\'' +
+                '}';
+    }
 }

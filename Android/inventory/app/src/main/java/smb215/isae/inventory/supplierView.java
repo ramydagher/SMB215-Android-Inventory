@@ -9,44 +9,43 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-import smb215.isae.inventory.beans.customer;
+import smb215.isae.inventory.beans.supplier;
 import smb215.isae.inventory.dataaccess.databaseHandler;
 
+import static smb215.isae.inventory.R.layout.activity_supplier_view;
 
-public class customerView extends Activity {
 
-    customer currentCustomer;
-    EditText atName,atCompanyName,atPhone,atEmail,atBillingAddress,atShippingAddress;
+public class supplierView extends Activity {
+
+    supplier currentSupplier;
+    EditText atName,atCompanyName,atPhone,atEmail,atBillingAddress;
     boolean isEditable = false;
     databaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_view);
+        setContentView(activity_supplier_view);
 
 
 
         Intent intent = getIntent();
-        currentCustomer = (customer) intent.getSerializableExtra("Customer");
-        setTitle(currentCustomer.getName());
+        currentSupplier = (supplier) intent.getSerializableExtra("Supplier");
+        setTitle(currentSupplier.getName());
 
-        atName= (EditText)findViewById(R.id.txt_customer_name);
-        atName.setText(currentCustomer.getName());
+        atName= (EditText)findViewById(R.id.txt_supplier_name);
+        atName.setText(currentSupplier.getName());
 
-         atCompanyName = (EditText)findViewById(R.id.txt_customer_company);
-        atCompanyName.setText(currentCustomer.getCompanyName());
+         atCompanyName = (EditText)findViewById(R.id.txt_supplier_company);
+        atCompanyName.setText(currentSupplier.getCompanyName());
 
-         atPhone = (EditText)findViewById(R.id.txt_customer_phone);
-        atPhone.setText(currentCustomer.getPhone());
+         atPhone = (EditText)findViewById(R.id.txt_supplier_phone);
+        atPhone.setText(currentSupplier.getPhone());
 
-         atEmail = (EditText)findViewById(R.id.txt_customer_email);
-        atEmail.setText(currentCustomer.getEmail());
+         atEmail = (EditText)findViewById(R.id.txt_supplier_email);
+        atEmail.setText(currentSupplier.getEmail());
 
          atBillingAddress = (EditText)findViewById(R.id.txt_billing_address);
-        atBillingAddress.setText(currentCustomer.getBillingAddress());
-
-         atShippingAddress = (EditText)findViewById(R.id.txt_shipping_address);
-        atShippingAddress.setText(currentCustomer.getShippingAddress());
+        atBillingAddress.setText(currentSupplier.getBillingAddress());
 
 
         setViewEditable(isEditable);
@@ -70,9 +69,6 @@ public class customerView extends Activity {
         atBillingAddress.setFocusable(readonly);
         atBillingAddress.setFocusableInTouchMode(readonly);
 
-        atShippingAddress.setFocusable(readonly);
-        atShippingAddress.setFocusableInTouchMode(readonly);
-
     }
 
     @Override
@@ -90,25 +86,25 @@ public class customerView extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_edit) {
-            Intent intent = new Intent(customerView.this ,customerEdit.class);
-            intent.putExtra("Customer", currentCustomer);
+            Intent intent = new Intent(supplierView.this ,supplierEdit.class);
+            intent.putExtra("Supplier", currentSupplier);
             startActivity(intent);
         }
         if (id == R.id.action_delete) {
-            ConfirmDeleteCustomer();
+            ConfirmDeleteSupplier();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void ConfirmDeleteCustomer() {
+    private void ConfirmDeleteSupplier() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete Customer Confirmation");
-        builder.setMessage("Are you sure you want to delete the customer :'"+ currentCustomer.getName()+"'?")
+        builder.setTitle("Delete Supplier Confirmation");
+        builder.setMessage("Are you sure you want to delete the supplier :'"+ currentSupplier.getName()+"'?")
                 .setCancelable(false)
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        DeleteCustomer();
+                        DeleteSupplier();
                     }
                 })
                 .setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -122,10 +118,10 @@ public class customerView extends Activity {
         alertDialog.show();
     }
 
-    private void DeleteCustomer() {
+    private void DeleteSupplier() {
         db = new databaseHandler(this);
-        db.deleteCustomer(currentCustomer.getID());
-        String message = "Customer '" + currentCustomer.getName() + "' deleted successfully!";
+        db.deleteSupplier(currentSupplier.getID());
+        String message = "Supplier '" + currentSupplier.getName() + "' deleted successfully!";
         utils.DisplayToast(this, message);
         this.finish();
     }

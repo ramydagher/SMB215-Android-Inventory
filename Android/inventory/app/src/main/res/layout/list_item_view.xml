@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/CustomerName"
+        android:id="@+id/BigHeader"
         android:layout_toEndOf="@+id/itemIcon"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/itemIcon"
@@ -39,12 +39,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
-        android:id="@+id/CustomerTel"
+        android:id="@+id/SmallHeader"
         android:layout_toEndOf="@+id/itemIcon"
         android:layout_toRightOf="@+id/itemIcon"
         android:layout_alignBottom="@+id/itemIcon"
-        android:layout_alignLeft="@+id/CustomerName"
-        android:layout_alignStart="@+id/CustomerName"
+        android:layout_alignLeft="@+id/BigHeader"
+        android:layout_alignStart="@+id/BigHeader"
         android:layout_marginLeft="5dp" />
     </LinearLayout>
     </LinearLayout>
