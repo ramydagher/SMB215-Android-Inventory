@@ -66,5 +66,16 @@
             android:background="@android:color/black"
             android:layout_margin="5dp" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:id="@+id/btnLocations"
+            android:text="Locations"
+            android:textColor="@android:color/white"
+            android:background="@android:color/black"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_horizontal" />
+
     </LinearLayout>
 </RelativeLayout>

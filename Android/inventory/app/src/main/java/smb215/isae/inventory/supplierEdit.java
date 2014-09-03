@@ -21,7 +21,7 @@ public class supplierEdit extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_supplier_edit);
+        setContentView(R.layout.activity_supplier_view);
 
         db = new databaseHandler(this);
 

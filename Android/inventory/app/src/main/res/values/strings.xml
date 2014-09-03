@@ -20,6 +20,12 @@
     <string name="title_activity_supplier_details">Supplier - Details</string>
     <string name="title_activity_supplier_edit">Supplier - Edit</string>
     <string name="title_activity_supplier_add">Supplier - Add</string>
+
+    <string name="title_activity_location_view">Locations</string>
+    <string name="title_activity_location_details">Location - Details</string>
+    <string name="title_activity_location_edit">Location - Edit</string>
+    <string name="title_activity_location_add">Location - Add</string>
+
     <string name="hello_world">Hello world!</string>
 
 </resources>

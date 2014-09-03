@@ -21,7 +21,7 @@ public class customerEdit extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_edit);
+        setContentView(R.layout.activity_customer_view);
 
         db = new databaseHandler(this);
 

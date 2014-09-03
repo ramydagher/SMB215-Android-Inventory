@@ -379,6 +379,17 @@ public class databaseHandler extends SQLiteOpenHelper {
 
     }
 
+    public boolean checkProductLocationExists(String productLocationName)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTLOCATION +" WHERE " + COL_PRODUCTLOCATION_NAME+" = '" +productLocationName+"'", null);
+        if ( res.getCount() == 0)
+            return false;
+        else
+            return true;
+
+    }
+
 
 
 
