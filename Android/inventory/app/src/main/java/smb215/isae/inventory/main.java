@@ -46,6 +46,16 @@ public class main extends Activity {
             }
         });
 
+        Button btnProducts = (Button) findViewById(R.id.btnProducts);
+        btnProducts.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(main.this, productListView.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

@@ -390,6 +390,17 @@ public class databaseHandler extends SQLiteOpenHelper {
 
     }
 
+    public boolean checkProductExists(String productCode)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_PRODUCT +" WHERE " + COL_PRODUCT_CODE+" = '" +productCode+"'", null);
+        if ( res.getCount() == 0)
+            return false;
+        else
+            return true;
+
+    }
+
 
 
 

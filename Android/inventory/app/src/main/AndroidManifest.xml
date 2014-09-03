@@ -18,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".customerListView"
             android:label="@string/title_activity_customer_view" >
@@ -30,6 +31,7 @@
             android:name=".customerEdit"
             android:label="@string/title_activity_customer_edit" >
         </activity>
+
         <activity
             android:name=".supplierListView"
             android:label="@string/title_activity_supplier_view" >
@@ -42,6 +44,7 @@
             android:name=".supplierEdit"
             android:label="@string/title_activity_supplier_edit" >
         </activity>
+
         <activity
             android:name=".productLocationListView"
             android:label="@string/title_activity_location_view" >
@@ -54,6 +57,20 @@
             android:name=".productLocationEdit"
             android:label="@string/title_activity_customer_edit" >
         </activity>
+
+        <activity
+            android:name=".productListView"
+            android:label="@string/title_activity_product_view" >
+        </activity>
+        <activity
+            android:name=".productView"
+            android:label="@string/title_activity_product_details" >
+        </activity>
+        <activity
+            android:name=".productEdit"
+            android:label="@string/title_activity_product_edit" >
+        </activity>
+
     </application>
 
 </manifest>

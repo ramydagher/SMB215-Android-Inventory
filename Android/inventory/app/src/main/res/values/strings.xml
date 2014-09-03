@@ -26,6 +26,10 @@
     <string name="title_activity_location_edit">Location - Edit</string>
     <string name="title_activity_location_add">Location - Add</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_product_view">Products</string>
+    <string name="title_activity_product_details">Product - Details</string>
+    <string name="title_activity_product_edit">Product - Edit</string>
+    <string name="title_activity_product_add">Product - Add</string>
+
 
 </resources>
