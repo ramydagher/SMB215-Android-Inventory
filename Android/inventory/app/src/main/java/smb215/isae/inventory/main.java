@@ -56,6 +56,26 @@ public class main extends Activity {
             }
         });
 
+        Button btnSO = (Button) findViewById(R.id.btnSO);
+        btnSO.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(main.this, salesOrderListView.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnPO = (Button) findViewById(R.id.btnPO);
+        btnSO.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(main.this, purchaseOrderListView.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

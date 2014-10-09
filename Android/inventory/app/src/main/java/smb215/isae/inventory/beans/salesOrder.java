@@ -1,11 +1,12 @@
 package smb215.isae.inventory.beans;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Ramy on 10/9/2014.
  */
-public class salesOrder {
+public class salesOrder implements Serializable{
 
     private int ID;
     private String Serial;
